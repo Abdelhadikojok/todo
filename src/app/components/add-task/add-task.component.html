@@ -1,0 +1,117 @@
+<div class="container">
+  <form #taskForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select
+        id="category"
+        name="category"
+        [(ngModel)]="task.categoryId"
+        required
+        #category="ngModel"
+      >
+        <option value="" disabled>Select a category</option>
+        <option
+          *ngFor="let category of categories"
+          value="{{ category.categoryId }}"
+        >
+          {{ category.name }}
+        </option>
+      </select>
+      <div *ngIf="category.invalid && (category.dirty || category.touched)">
+        <div *ngIf="category.hasError('required')" class="error-message">
+          Category is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="status">Status</label>
+      <select
+        id="status"
+        name="status"
+        [(ngModel)]="task.status"
+        required
+        #status="ngModel"
+      >
+        <option value="" disabled>Select a status</option>
+        <option value="High">High</option>
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+      </select>
+      <div *ngIf="status.invalid && (status.dirty || status.touched)">
+        <div *ngIf="status.hasError('required')" class="error-message">
+          Status is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="dueDate">Due Date</label>
+      <input
+        type="date"
+        id="dueDate"
+        name="dueDate"
+        [(ngModel)]="task!.dueDate"
+        required
+        #dueDate="ngModel"
+      />
+      <div *ngIf="dueDate.invalid && (dueDate.dirty || dueDate.touched)">
+        <div *ngIf="dueDate.hasError('required')" class="error-message">
+          Due Date is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="estimateDate">Estimate Date</label>
+      <input
+        type="date"
+        id="estimateDate"
+        name="estimateDate"
+        [(ngModel)]="task!.estimateDate"
+        required
+        #estimateDate="ngModel"
+      />
+      <div
+        *ngIf="
+          estimateDate.invalid && (estimateDate.dirty || estimateDate.touched)
+        "
+      >
+        <div *ngIf="estimateDate.hasError('required')" class="error-message">
+          Estimate Date is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        [(ngModel)]="task!.title"
+        required
+        #title="ngModel"
+      />
+      <div *ngIf="title.invalid && (title.dirty || title.touched)">
+        <div *ngIf="title.hasError('required')" class="error-message">
+          Title is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="title">importance</label>
+      <input
+        type="text"
+        id="importance"
+        name="importance"
+        [(ngModel)]="task!.importance"
+        required
+        #importance="ngModel"
+      />
+    </div>
+
+    <button type="submit" [disabled]="!taskForm.valid">Submit</button>
+  </form>
+</div>

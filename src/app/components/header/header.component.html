@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="logo">
+    <a routerLink="/">
+      <img src="../../../assets/logo.svg" alt="" />
+    </a>
+  </div>
+  <ul>
+    <li>
+      <!-- <ion-icon name="search-outline"></ion-icon> -->
+    </li>
+    <li style="font-size: var(--fs-4)"><a routerLink="/addTask">+</a></li>
+    <li class="user" clickOutside (clickOutside)="clickedOutside()">
+      <button (click)="displayList()">
+        <img
+          src="https://firebasestorage.googleapis.com/v0/b/abdelhadi-ecommerce-app.appspot.com/o/avatar-1.jpg?alt=media&token=61a2ad87-31da-4df3-b316-3fd1b7398581&_gl=1*1iv67ai*_ga*MTkzNzQxNDAwNS4xNjg5MzY1NTI5*_ga_CW55HF8NVT*MTY5NzgyNDc5MS4xMDkuMS4xNjk3ODI0ODExLjQwLjAuMA.."
+          alt=""
+        />
+      </button>
+      <div class="menue" *ngIf="display">
+        <div class="user-image">
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/abdelhadi-ecommerce-app.appspot.com/o/avatar-1.jpg?alt=media&token=61a2ad87-31da-4df3-b316-3fd1b7398581&_gl=1*1iv67ai*_ga*MTkzNzQxNDAwNS4xNjg5MzY1NTI5*_ga_CW55HF8NVT*MTY5NzgyNDc5MS4xMDkuMS4xNjk3ODI0ODExLjQwLjAuMA.."
+            alt=""
+          />
+        </div>
+        <div class="user-info">
+          <div class="mail">abdelhadikojok8123@gmail.com</div>
+          <div class="log-out"><button (click)="LogOut()">LogOut</button></div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="info" *ngIf="dipslayInfo">
+  <div class="text">
+    <p>Any thing that can go wrong, will go wrong</p>
+    <button (click)="hideInfo()">X</button>
+  </div>
+</div>
+<button class="info-icon" *ngIf="!dipslayInfo" (click)="showInfo()">!!</button>

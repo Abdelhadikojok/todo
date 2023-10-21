@@ -1,0 +1,42 @@
+.card{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  width: 400px;
+  background-color: #eee;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.title{
+  font-weight: var(--fw-600);
+}
+
+.card-info{
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 15ch auto;
+}
+
+.card-info span{
+  color: var(--main-color);
+  font-weight: var(--fw-600);
+}
+.card-info p{
+  color: #555;
+}
+
+.importance p{
+  padding: 9px 7px;
+  background-color: red;
+  color: white;
+  font-size: var(--fs-7);
+  font-weight: var(--fw-600);
+  width: fit-content;
+  border-radius: 4px;
+  position: relative;
+  bottom: 6px;
+
+
+}

@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="todo">
+    <div class="category-header">To Do</div>
+    <app-tasks-by-category [tasks]="tasks[0].tasks"></app-tasks-by-category>
+  </div>
+  <div class="Doing">
+    <div class="category-header">Doing</div>
+    <app-tasks-by-category [tasks]="tasks[1].tasks"></app-tasks-by-category>
+  </div>
+  <div class="done">
+    <div class="category-header">Done</div>
+    <app-tasks-by-category [tasks]="tasks[2].tasks"></app-tasks-by-category>
+  </div>
+</div>
