@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 30px;
   padding: 20px;
-  width: 400px;
+  width: 350px;
   background-color: #eee;
   border-radius: 5px;
   margin-bottom: 20px;
@@ -29,7 +29,7 @@
 
 .importance p{
   padding: 9px 7px;
-  background-color: red;
+  /* background-color: red; */
   color: white;
   font-size: var(--fs-7);
   font-weight: var(--fw-600);
@@ -39,4 +39,37 @@
   bottom: 6px;
 
 
+}
+
+
+.low-importance {
+  background-color: #39ac95;
+}
+
+.medium-importance {
+  background-color: #fe913e;
+}
+
+.high-importance {
+  background-color: #dc3545;
+}
+
+.task-action-card{
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: var(--fs-8);
+  color: white;
+  font-weight: var(--fw-600);
+}
+
+.delete{
+  background-color: #94000f ;
+}
+
+.update{
+  background-color: var(--main-color);
+}
+.update-buttons{
+  display: flex;
+  gap: 20px;
 }

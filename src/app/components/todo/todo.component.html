@@ -1,14 +1,59 @@
-<div class="container">
-  <div class="todo">
+<input
+  [(ngModel)]="filterTitle"
+  placeholder="Filter by Title"
+  (input)="loadTaskCards()"
+/>
+<button (click)="loadTaskCards()">Filter</button>
+<div class="container" *ngIf="tasks && tasks.length > 0" cdkDropListGroup>
+  <div class="todo category-section">
     <div class="category-header">To Do</div>
-    <app-tasks-by-category [tasks]="tasks[0].tasks"></app-tasks-by-category>
+    <div
+      class="example-list"
+      cdkDropList
+      [cdkDropListData]="todoTask"
+      (cdkDropListDropped)="drop($event, 2)"
+    >
+      <div *ngFor="let totask of todoTask" cdkDrag>
+        <app-task
+          [task]="totask"
+          (taskDeleted)="onTaskDeleted(totask)"
+        ></app-task>
+      </div>
+      <div class="empty-task card" *ngIf="todoTask.length == 0"></div>
+    </div>
   </div>
-  <div class="Doing">
+  <div class="Doing category-section">
     <div class="category-header">Doing</div>
-    <app-tasks-by-category [tasks]="tasks[1].tasks"></app-tasks-by-category>
+    <div
+      class="example-list"
+      cdkDropList
+      [cdkDropListData]="doingTask"
+      (cdkDropListDropped)="drop($event, 3)"
+    >
+      <div *ngFor="let ditask of doingTask" cdkDrag>
+        <app-task
+          [task]="ditask"
+          (taskDeleted)="onTaskDeleted(ditask)"
+        ></app-task>
+      </div>
+      <div class="empty-task card" *ngIf="doingTask.length == 0"></div>
+    </div>
   </div>
-  <div class="done">
+  <div class="done category-section">
     <div class="category-header">Done</div>
-    <app-tasks-by-category [tasks]="tasks[2].tasks"></app-tasks-by-category>
+    <div
+      class="example-list"
+      cdkDropList
+      [cdkDropListData]="doneTask"
+      (cdkDropListDropped)="drop($event, 4)"
+    >
+      <div *ngFor="let dotask of doneTask" cdkDrag>
+        <app-task
+          [task]="dotask"
+          (taskDeleted)="onTaskDeleted(dotask)"
+        ></app-task>
+      </div>
+      <div class="empty-task card" *ngIf="doneTask.length == 0" cdkDrag></div>
+    </div>
   </div>
 </div>

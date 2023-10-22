@@ -6,7 +6,11 @@
   </div>
   <ul>
     <li>
-      <!-- <ion-icon name="search-outline"></ion-icon> -->
+      <!-- <img
+        src="../../../assets/search-interface-symbol.png"
+        alt=""
+        style="width: 10px"
+      /> -->
     </li>
     <li style="font-size: var(--fs-4)"><a routerLink="/addTask">+</a></li>
     <li class="user" clickOutside (clickOutside)="clickedOutside()">
@@ -31,10 +35,14 @@
     </li>
   </ul>
 </div>
-<div class="info" *ngIf="dipslayInfo">
+<div class="info" [ngClass]="dipslayInfo ? 'active' : ''">
   <div class="text">
-    <p>Any thing that can go wrong, will go wrong</p>
-    <button (click)="hideInfo()">X</button>
+    <p>""Any thing that can go wrong, will go wrong""</p>
+    <button (click)="hideInfo()">
+      <img src="../../../assets/close.png" alt="" />
+    </button>
   </div>
 </div>
-<button class="info-icon" *ngIf="!dipslayInfo" (click)="showInfo()">!!</button>
+<button class="info-icon" *ngIf="!dipslayInfo" (click)="showInfo()">
+  <img src="../../../assets/info.png" alt="" />
+</button>

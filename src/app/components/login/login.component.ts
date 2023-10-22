@@ -36,11 +36,10 @@ export class LoginComponent implements OnDestroy {
           this.isloading = true;
           this.authSubscription = this.authService.signIn(email, password).subscribe(res => {
               console.log(res)
-              // alertify.success('login success');
-              this.router.navigate(['/'])
               this.islogedIn = true
               console.log(this.islogedIn)
               this.isloading = false;
+              this.router.navigate(['/'])
           }, err => {
               // alertify.error('login Faild');
               this.error = err;

@@ -50,6 +50,7 @@ ul{
   bottom:-110px;
   right: 0px;
   border-radius: 2px;
+  z-index: 999  ;
 }
 
 .user .menue .user-info .mail{
@@ -69,13 +70,32 @@ ul{
 
 }
 
-.info .text{
+.info {
+  transition: .4s;
+  opacity: 0;
+  position: relative;
+  display: none;
+  top: -100px;
+}
+
+.info .text {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: var(--fs-7);
   color: white;
+
 }
+
+
+.info.active{
+  opacity: 1;
+  transition: .4s;
+  display: block;
+  top: 0;
+}
+
+
 .info .text button{
   color: white;
 }
@@ -87,3 +107,5 @@ ul{
   cursor: pointer;
   color: var(--main-color);
 }
+
+

@@ -1,19 +1,94 @@
 <div class="card">
-  <div class="title">{{ task.title }}</div>
+  <div class="title">
+    <p *ngIf="!updatemode">
+      {{ task.title }}
+    </p>
+    <input
+      type="text"
+      id="title"
+      name="title"
+      [(ngModel)]="task!.title"
+      required
+      #title="ngModel"
+      *ngIf="updatemode"
+    />
+  </div>
+
   <div class="category card-info">
     <span>Category</span>
-    <p>completed</p>
+    <p *ngIf="!updatemode">{{ task.status }}</p>
+    <input
+      type="text"
+      id="status"
+      name="status"
+      [(ngModel)]="task!.status"
+      required
+      #status="ngModel"
+      *ngIf="updatemode"
+    />
   </div>
   <div class="due-date card-info">
     <span>due date</span>
-    <p>{{ task.dueDate }}</p>
+    <p *ngIf="!updatemode">{{ task.dueDate | date }}</p>
+    <input
+      type="date"
+      id="dueDate"
+      name="dueDate"
+      [(ngModel)]="task!.dueDate"
+      required
+      #dueDate="ngModel"
+      *ngIf="updatemode"
+    />
   </div>
   <div class="estimate card-info">
     <span>estimate</span>
-    <p>{{ task.estimateDate }}</p>
+    <p>{{ task.estimateDate | date }}</p>
   </div>
   <div class="importance card-info">
     <span>Improtance</span>
-    <p *ngIf="task.importance">{{ task.importance }}</p>
+    <p
+      *ngIf="task.importance && !updatemode"
+      [ngClass]="{
+        'low-importance': task.importance.toLowerCase() === 'low',
+        'high-importance': task.importance.toLowerCase() === 'high',
+        'medium-importance': task.importance.toLowerCase() === 'medium',
+      }"
+    >
+      {{ task.importance }}
+    </p>
+    <select
+      id="importance"
+      name="importance"
+      [(ngModel)]="task.importance"
+      required
+      #importance="ngModel"
+      *ngIf="updatemode"
+    >
+      <option value="" disabled>Select a importance</option>
+      <option value="High">High</option>
+      <option value="Low">Low</option>
+      <option value="Medium">Medium</option>
+    </select>
+  </div>
+  <div style="display: flex; gap: 20px">
+    <button (click)="deleteTask(task)" class="task-action-card delete">
+      delete
+    </button>
+    <div class="update-buttons">
+      <button
+        (click)="changeUpdateMode(task)"
+        class="task-action-card update"
+        *ngIf="!updatemode"
+      >
+        update
+      </button>
+      <button
+        (click)="UpdateTask(task)"
+        *ngIf="updatemode"
+        class="task-action-card update"
+      >
+        Submit
+      </button>
+    </div>
   </div>
 </div>

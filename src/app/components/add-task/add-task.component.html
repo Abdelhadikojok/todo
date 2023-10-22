@@ -1,7 +1,7 @@
 <div class="container">
-  <form #taskForm="ngForm" (ngSubmit)="onSubmit()">
+  <form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)">
     <div class="form-group">
-      <label for="category">Category</label>
+      <label for="category">Status</label>
       <select
         id="category"
         name="category"
@@ -23,24 +23,26 @@
         </div>
       </div>
     </div>
-
+    {{ task.categoryId }}
     <div class="form-group">
-      <label for="status">Status</label>
+      <label for="importance">importance</label>
       <select
-        id="status"
-        name="status"
-        [(ngModel)]="task.status"
+        id="importance"
+        name="importance"
+        [(ngModel)]="task.importance"
         required
-        #status="ngModel"
+        #importance="ngModel"
       >
-        <option value="" disabled>Select a status</option>
+        <option value="" disabled>Select a importance</option>
         <option value="High">High</option>
         <option value="Low">Low</option>
         <option value="Medium">Medium</option>
       </select>
-      <div *ngIf="status.invalid && (status.dirty || status.touched)">
-        <div *ngIf="status.hasError('required')" class="error-message">
-          Status is required.
+      <div
+        *ngIf="importance.invalid && (importance.dirty || importance.touched)"
+      >
+        <div *ngIf="importance.hasError('required')" class="error-message">
+          importance is required.
         </div>
       </div>
     </div>
@@ -101,14 +103,14 @@
     </div>
 
     <div class="form-group">
-      <label for="title">importance</label>
+      <label for="title">Category</label>
       <input
         type="text"
-        id="importance"
-        name="importance"
-        [(ngModel)]="task!.importance"
+        id="status"
+        name="status"
+        [(ngModel)]="task!.status"
         required
-        #importance="ngModel"
+        #status="ngModel"
       />
     </div>
 

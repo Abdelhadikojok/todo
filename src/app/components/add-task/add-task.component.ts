@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Category } from 'src/app/models/category';
 import { Task } from 'src/app/models/task';
@@ -41,11 +42,12 @@ export class AddTaskComponent implements OnInit , OnDestroy{
     })
   }
 
-  onSubmit(){
+  onSubmit(form:NgForm){
     console.log(this.task)
     this.http.addTask(this.task).subscribe(res=>{
       console.log(res);
     })
+    form.reset()
   }
 
   ngOnDestroy(): void {

@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { GroupedTask, Task } from '../models/task';
 import { Category } from '../models/category';
+import { Observable, debounceTime } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,13 @@ export class HttpService {
 
   updateTask(task:Task){
     return this.http.put(`${environment.apiUrl}/updateTask`,task)
+  }
+
+  deleteTask(taskid : number){
+    return this.http.delete(`${environment.apiUrl}/deleteTask?taskid=${taskid}`)
+  }
+  getFilteredTaskCards(title: string){
+    const params = new HttpParams().set('title', title);
+    return this.http.get<GroupedTask[]>(`${environment.apiUrl}/filter`, { params });
   }
 }

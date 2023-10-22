@@ -16,7 +16,6 @@ import { TaskComponent } from './components/todo/task/task.component';
 import { CdkDrag, CdkDropList, CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { AddTaskComponent } from './components/add-task/add-task.component';
 import { TasksByCategoryComponent } from './components/todo/tasks-by-category/tasks-by-category.component';
-import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -39,7 +38,6 @@ import { IonicModule } from '@ionic/angular';
     CdkDrag,
     CdkDropList,
     CdkDropListGroup,
-    IonicModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
