@@ -22,6 +22,13 @@ export class TodoComponent implements OnInit {
 
   ngOnInit(): void {
       this.getTasks()
+      this.httpService.dataSubject.subscribe(res=>{
+        this.filterTitle = res
+        console.log(res);
+
+        this.loadTaskCards();
+      }
+      )
   }
 
 

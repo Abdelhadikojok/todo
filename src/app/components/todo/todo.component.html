@@ -1,12 +1,9 @@
-<input
-  [(ngModel)]="filterTitle"
-  placeholder="Filter by Title"
-  (input)="loadTaskCards()"
-/>
-<button (click)="loadTaskCards()">Filter</button>
 <div class="container" *ngIf="tasks && tasks.length > 0" cdkDropListGroup>
   <div class="todo category-section">
-    <div class="category-header">To Do</div>
+    <div class="category-header">
+      <img src="../../../assets/ToDoIcon.svg" alt="" />
+      <p>To Do</p>
+    </div>
     <div
       class="example-list"
       cdkDropList
@@ -23,7 +20,10 @@
     </div>
   </div>
   <div class="Doing category-section">
-    <div class="category-header">Doing</div>
+    <div class="category-header">
+      <img src="../../../assets/DoingIcon.svg" alt="" />
+      <p>Doing</p>
+    </div>
     <div
       class="example-list"
       cdkDropList
@@ -40,7 +40,10 @@
     </div>
   </div>
   <div class="done category-section">
-    <div class="category-header">Done</div>
+    <div class="category-header">
+      <img src="../../../assets/DoneIcon.svg" alt="" />
+      <p>Done</p>
+    </div>
     <div
       class="example-list"
       cdkDropList

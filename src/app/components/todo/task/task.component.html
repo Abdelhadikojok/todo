@@ -10,12 +10,12 @@
       [(ngModel)]="task!.title"
       required
       #title="ngModel"
-      *ngIf="updatemode"
+      *ngIf="updatemode && InToDoComponent"
     />
   </div>
 
   <div class="category card-info">
-    <span>Category</span>
+    <span class="card-def">Category</span>
     <p *ngIf="!updatemode">{{ task.status }}</p>
     <input
       type="text"
@@ -24,11 +24,11 @@
       [(ngModel)]="task!.status"
       required
       #status="ngModel"
-      *ngIf="updatemode"
+      *ngIf="updatemode && InToDoComponent"
     />
   </div>
   <div class="due-date card-info">
-    <span>due date</span>
+    <span class="card-def">due date</span>
     <p *ngIf="!updatemode">{{ task.dueDate | date }}</p>
     <input
       type="date"
@@ -37,15 +37,15 @@
       [(ngModel)]="task!.dueDate"
       required
       #dueDate="ngModel"
-      *ngIf="updatemode"
+      *ngIf="updatemode && InToDoComponent"
     />
   </div>
   <div class="estimate card-info">
-    <span>estimate</span>
+    <span class="card-def">estimate</span>
     <p>{{ task.estimateDate | date }}</p>
   </div>
   <div class="importance card-info">
-    <span>Improtance</span>
+    <span class="card-def">Improtance</span>
     <p
       *ngIf="task.importance && !updatemode"
       [ngClass]="{
@@ -62,7 +62,7 @@
       [(ngModel)]="task.importance"
       required
       #importance="ngModel"
-      *ngIf="updatemode"
+      *ngIf="updatemode && InToDoComponent"
     >
       <option value="" disabled>Select a importance</option>
       <option value="High">High</option>
@@ -71,24 +71,28 @@
     </select>
   </div>
   <div style="display: flex; gap: 20px">
-    <button (click)="deleteTask(task)" class="task-action-card delete">
+    <button
+      (click)="deleteTask(task)"
+      class="task-action-card delete"
+      *ngIf="InToDoComponent"
+    >
       delete
     </button>
     <div class="update-buttons">
       <button
         (click)="changeUpdateMode(task)"
         class="task-action-card update"
-        *ngIf="!updatemode"
+        *ngIf="!updatemode && InToDoComponent"
       >
         update
       </button>
-      <button
+      <!-- <button
         (click)="UpdateTask(task)"
-        *ngIf="updatemode"
+        *ngIf="!updatemode && InToDoComponent"
         class="task-action-card update"
       >
         Submit
-      </button>
+      </button> -->
     </div>
   </div>
 </div>

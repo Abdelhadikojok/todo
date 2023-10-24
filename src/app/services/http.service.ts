@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { GroupedTask, Task } from '../models/task';
 import { Category } from '../models/category';
-import { Observable, debounceTime } from 'rxjs';
+import { BehaviorSubject, Observable, debounceTime } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
+  dataSubject = new BehaviorSubject<string>('');
 
   constructor(private http:HttpClient) { }
 

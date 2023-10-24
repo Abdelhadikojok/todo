@@ -2,23 +2,28 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  background-color: #707070;
 }
 
 .category-section{
   min-height: 600px;
   padding: 20px;
   margin-block: 20px;
-  background-color: #ccc;
 }
 
 .category-header{
-  width: 350px;
-  padding: 10px 20px;
-  background-color: #eee;
+  width: 420px;
+  padding: 15px 20px;
+  background-color: #212529;
   margin-bottom: 20px;
   border-radius: 5px;
   font-size: var(--fs-5);
-  /* font-weight: var(--fw-600); */
+  color: white;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  position: fixed;
+
 }
 
 .example-box {
@@ -60,6 +65,12 @@
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
+.example-list{
+  margin-top: 80px;
+}
+.example-list .cdk-drag {
+  transition: transform 0.5s; /* Add a transition to the transform property */
+}
 
 .card{
   display: flex;

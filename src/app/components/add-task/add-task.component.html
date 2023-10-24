@@ -23,7 +23,6 @@
         </div>
       </div>
     </div>
-    {{ task.categoryId }}
     <div class="form-group">
       <label for="importance">importance</label>
       <select
@@ -116,4 +115,7 @@
 
     <button type="submit" [disabled]="!taskForm.valid">Submit</button>
   </form>
+  <div class="card" style="width: 420px">
+    <app-task [InToDoComponent]="false" [task]="task"></app-task>
+  </div>
 </div>

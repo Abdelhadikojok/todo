@@ -15,14 +15,15 @@
   --fw-700: 700;
 
   /* Colors */
-  --main-color: #007574;
-  --raisin-black: hsla(231, 10%, 14%, 1);
-  --roman-silver: hsla(229, 10%, 57%, 1);
-  --eerie-black: hsla(228, 9%, 10%, 1);
-  --black: hsla(0, 0%, 0%, 1);
-  --white: hsla(0, 0%, 100%, 1);
-  --white_a10: hsla(0, 0%, 100%, 0.1);
-  --white_a5: hsla(0, 0%, 100%, 0.05);
+  --purple-color : #403564;
+  --light-purple-color : #B6A3C2;
+  --input-background : #222222;
+  --text-white-color : #FFFFFF;
+  --dark-blue-color : #2D2B52;
+  --dark-background : #212121;
+  --meduim-purple : #8556A4;
+  --gradiant-background : linear-gradient(180deg, rgba(133,86,164,1) 0%, rgba(45,43,82,1) 100%);
+
 
 
   /* Transition */
@@ -139,6 +140,6 @@ h1 {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--main-color);
+  background-color: #8556A4;
   border-radius: 0px;
 }

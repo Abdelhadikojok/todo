@@ -8,6 +8,7 @@ import { HttpService } from 'src/app/services/http.service';
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent {
+  @Input() InToDoComponent : boolean = true
   updatemode : boolean = false
   @Input() task : Task ={
       categoryId : 2,

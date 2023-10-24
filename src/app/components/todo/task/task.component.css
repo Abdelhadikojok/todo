@@ -1,16 +1,19 @@
+
 .card{
   display: flex;
   flex-direction: column;
   gap: 30px;
   padding: 20px;
-  width: 350px;
-  background-color: #eee;
-  border-radius: 5px;
+  width: 420px;
+  height: 340px;
+  background-color: #212529;
+  border-radius: 6px;
   margin-bottom: 20px;
 }
 
 .title{
   font-weight: var(--fw-600);
+  color: white;
 }
 
 .card-info{
@@ -19,17 +22,17 @@
   grid-template-columns: 15ch auto;
 }
 
-.card-info span{
+.card-info .card-def{
   color: var(--main-color);
   font-weight: var(--fw-600);
+  color: #6C757D;
 }
 .card-info p{
-  color: #555;
+  color: white;
 }
 
 .importance p{
   padding: 9px 7px;
-  /* background-color: red; */
   color: white;
   font-size: var(--fs-7);
   font-weight: var(--fw-600);
@@ -67,9 +70,10 @@
 }
 
 .update{
-  background-color: var(--main-color);
+  background-color: #00fdbe85 ;
 }
 .update-buttons{
   display: flex;
   gap: 20px;
+
 }
