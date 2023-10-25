@@ -152,7 +152,11 @@
   transition: .3s;
 }
 
-
+input{
+  background-color: #707070;
+  border: 1px solid var(--meduim-purple);
+  color: white;
+}
 /*
 @media (max-width: 1060px) {
   .card{

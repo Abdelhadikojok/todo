@@ -27,3 +27,10 @@
 .alert.error{
   background-color: #dc3545;
 }
+
+@media (max-width:400px) {
+  .alert {
+    width: 210px;
+    height: 65px;
+  }
+}

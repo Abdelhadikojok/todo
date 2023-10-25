@@ -47,6 +47,7 @@
 .form-container .form-group{
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
   margin-top: 20px;
 }
@@ -95,4 +96,95 @@
 
 .sign-in-button[disabled]{
   cursor: no-drop;
+}
+
+@media (max-width:1500px) {
+  .welcome-images .logo img{
+    width: 400px;
+
+  }
+  .man-woman-image img{
+    width: 400px;
+  }
+}
+@media (max-width:1300px) {
+  .welcome-images .logo img{
+    width: 400px;
+
+  }
+  .man-woman-image img{
+    width: 300px;
+  }
+}
+@media (max-width:1100px) {
+  .welcome-images .logo img{
+    width: 300px;
+
+  }
+  .man-woman-image img{
+    width: 200px;
+  }
+  .form-container .form-group input{
+    width: 400px;
+  }
+  .sign-in-button{
+    width: 400px;
+  }
+}
+@media (max-width:900px) {
+  .welcome-images .logo img{
+    width: 250px;
+
+  }
+  .man-woman-image img{
+    width: 150px;
+  }
+
+}
+
+@media (max-width:750px) {
+  .welcome-images{
+    display: none;
+  }
+  .form-container .form-group{
+    width: 500px;
+  }
+  .form-container .form-group input{
+    width: 80%;
+  }
+  .sign-in-button{
+    width: 80%;
+  }
+  .sign-In{
+    width: 100%;
+  }
+  form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+
+}
+
+
+@media (max-width:500px){
+  .form-container .form-group{
+    width: 350px;
+  }
+  .login-header {
+    font-size: var(--fs-4) !important;
+  }
+}
+
+@media (max-width:370px){
+  .form-container .form-group{
+    width: 300px;
+  }
+}
+@media (max-width:300px){
+  .form-container .form-group{
+    width: 280px;
+  }
 }
