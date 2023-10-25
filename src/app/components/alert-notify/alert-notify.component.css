@@ -1,0 +1,29 @@
+.alert {
+  margin: 30px;
+  width: 300px;
+  height: 85px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid var(--dark-blue-color);
+  position: fixed;
+  right: -100%;
+  transition: 0.5s;
+  color: white;
+  font-size: var(--fs-6);
+  /* font-weight: var(--fw-600); */
+}
+
+.alert.active{
+  right: 0;
+  transition: 0.5s;
+}
+
+.alert.success{
+  background-color: #39ac95;
+}
+
+.alert.error{
+  background-color: #dc3545;
+}

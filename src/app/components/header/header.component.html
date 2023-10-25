@@ -21,7 +21,7 @@
         <img src="../../../assets/Circle.svg" alt="" class="circle" />
       </button>
     </li>
-    <li class="user" clickOutside (clickOutside)="clickedOutside()">
+    <li class="user" CloseOutside (clickOutside)="clickedOutside()">
       <button (click)="displayList()">
         <img src="../../../assets/Bitmap.png" alt="" />
       </button>
@@ -30,7 +30,7 @@
           <img src="../../../assets/Bitmap.png" alt="" />
         </div>
         <div class="user-info">
-          <div class="mail">abdelhadikojok8123@gmail.com</div>
+          <div class="mail">{{ email }}</div>
           <div class="log-out">
             <img src="../../../assets/" alt="" />
             <button (click)="LogOut()">LogOut</button>

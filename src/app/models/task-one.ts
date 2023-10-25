@@ -1,4 +1,4 @@
-export interface Task {
+export interface TaskOne {
   taskId?:number
   categoryId : number
   status: string
@@ -10,10 +10,7 @@ export interface Task {
   name ? : string
 }
 
-export interface GroupedTask{
-  category : {
-    categoryId : number,
-    name:string
-  }
-  tasks : Task[]
+
+export interface Tasks {
+  tasks: TaskOne[];
 }

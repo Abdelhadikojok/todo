@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Category } from 'src/app/models/category';
 import { Task } from 'src/app/models/task';
+import { TaskOne } from 'src/app/models/task-one';
+import { AlertService } from 'src/app/services/alert.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -11,12 +13,17 @@ import { HttpService } from 'src/app/services/http.service';
   styleUrls: ['./add-task.component.css']
 })
 export class AddTaskComponent implements OnInit , OnDestroy{
-  task : Task = {
+  estimateDateNumber:number=0
+  estimateDateUnit:string=""
+
+  task : TaskOne = {
     categoryId : 0,
     status: "",
     dueDate: "",
-    estimateDate: "",
-    title: ""
+    estimateDatenumber:null ,
+    estimateDateUnit:null,
+    title: "",
+    importance : ""
   }
 
 
@@ -26,12 +33,14 @@ export class AddTaskComponent implements OnInit , OnDestroy{
 
 
 
-  constructor(private http : HttpService){
+  constructor(private http : HttpService,private alertService : AlertService){
 
   }
 
   ngOnInit(): void {
     this.getCategories()
+
+
 
   }
 
@@ -43,9 +52,13 @@ export class AddTaskComponent implements OnInit , OnDestroy{
   }
 
   onSubmit(form:NgForm){
-    console.log(this.task)
+    console.log("-----",this.task)
     this.http.addTask(this.task).subscribe(res=>{
       console.log(res);
+      this.alertService.alertMode.next(true)
+    },err=>{
+      this.alertService.alertMode.next(false)
+
     })
     form.reset()
   }

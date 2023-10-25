@@ -77,6 +77,9 @@
   </div>
   <div class="sign-In">
     <div class="login-header">Time To Work!</div>
+    <div class="loading-spinner" *ngIf="isloading">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
     <div class="form-container" *ngIf="!isloading">
       <form #authForm="ngForm" (ngSubmit)="submitForm(authForm)">
         <div class="form-group text">

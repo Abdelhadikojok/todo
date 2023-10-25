@@ -6,26 +6,44 @@ import {
 } from '@angular/cdk/drag-drop';
 import { HttpService } from 'src/app/services/http.service';
 import { GroupedTask, Task } from 'src/app/models/task';
+import { TaskOne, Tasks } from 'src/app/models/task-one';
+import { Category } from 'src/app/models/category';
+import { AlertService } from 'src/app/services/alert.service';
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.css']
 })
 export class TodoComponent implements OnInit {
-  tasks : GroupedTask[] = []
-  todoTask : Task [] = []
-  doingTask : Task [] = []
-  doneTask : Task [] = []
+  tasks  : Tasks[] =[]
+  Categories : Category[] =[]
+  categoryHeaderImages : any[] = [
+    "../../../assets/ToDoIcon.svg",
+    "../../../assets/DoingIcon.svg",
+    "../../../assets/DoneIcon.svg"
+  ]
+  deleteMode : boolean = false;
+  tasktodelete : TaskOne ={
+    taskId:0,
+    categoryId :0,
+    status: "",
+    dueDate: "",
+    estimateDatenumber:null,
+    estimateDateUnit:null,
+    title: "",
+    importance :"",
+    name : ""
+  }
   filterTitle : string = ""
 
-  constructor(private httpService:HttpService){}
+  constructor(private httpService:HttpService,private alertService:AlertService){}
 
   ngOnInit(): void {
       this.getTasks()
+      this.getCategories()
       this.httpService.dataSubject.subscribe(res=>{
         this.filterTitle = res
         console.log(res);
-
         this.loadTaskCards();
       }
       )
@@ -33,31 +51,37 @@ export class TodoComponent implements OnInit {
 
 
   getTasks(){
-    this.httpService.getTasks().subscribe(res=>{
+    this.httpService.getTaskOne().subscribe(res=>{
       this.tasks = res
-      console.log(res)
-      if(res[0]){
-        this.todoTask = this.tasks[0].tasks
-      }
-      if(res[1]){
-        this.doingTask = this.tasks[1].tasks
-      }
-      if(res[2]){
-        this.doneTask = this.tasks[2].tasks
-      }
 
     })
   }
 
   onTaskDeleted(task: Task) {
     console.log('Task deleted:', task);
-    if(task.taskId){
-      this.httpService.deleteTask(task.taskId).subscribe();
-      this.todoTask = this.todoTask.filter((t) => t.taskId !== task.taskId);
-      this.doingTask = this.doingTask.filter((t) => t.taskId !== task.taskId);
-      this.doneTask = this.doneTask.filter((t) => t.taskId !== task.taskId);
-      }
+    this.tasktodelete = task
 
+  }
+
+  ChangeDeleteMode(mode : boolean){
+    this.deleteMode = mode
+  }
+
+  deleteTask() {
+    if (this.tasktodelete.taskId) {
+      this.httpService.deleteTask(this.tasktodelete.taskId).subscribe(
+        (res) => {
+          this.alertService.alertMode.next(true);
+
+          this.getTasks()
+        },
+        (err) => {
+          this.alertService.alertMode.next(false);
+        }
+      );
+    }
+
+    this.deleteMode = false;
   }
 
 
@@ -71,6 +95,8 @@ export class TodoComponent implements OnInit {
 
       const taskToMove = event.previousContainer.data[event.previousIndex];
       if (taskToMove) {
+        console.log("the category id is : ",newCategoryId);
+
         this.updateTaskCategory(taskToMove, newCategoryId);
         if (event.container.data) {
           transferArrayItem(
@@ -87,30 +113,29 @@ export class TodoComponent implements OnInit {
   updateTaskCategory(task: Task, newCategoryId: number) {
     if (task.categoryId !== newCategoryId) {
       task.categoryId = newCategoryId;
-      console.log({...task,categoryId :newCategoryId});
-
       this.httpService.updateTask({...task,categoryId :newCategoryId}).subscribe((updatedTask) => {
         console.log('Task category updated:', updatedTask);
+        this.alertService.alertMode.next(true)
+      },err=>{
+        this.alertService.alertMode.next(false)
       });
     }
   }
 
+  getCategories(){
+    this.httpService.getCategories().subscribe(res=>{
+      this.Categories = res
+      console.log(res);
 
+    })
+  }
 
   loadTaskCards() {
     if(this.filterTitle != ""){
       this.httpService.getFilteredTaskCards(this.filterTitle).subscribe(
-        (data: GroupedTask[]) => {
+        (data: Tasks[]) => {
+
           this.tasks = data
-          if(data[0]){
-            this.todoTask = this.tasks[0].tasks
-          }
-          if(data[1]){
-            this.doingTask = this.tasks[1].tasks
-          }
-          if(data[2]){
-            this.doneTask = this.tasks[2].tasks
-          }
           console.log(data);
 
         },

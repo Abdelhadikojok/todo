@@ -42,7 +42,10 @@
   </div>
   <div class="estimate card-info">
     <span class="card-def">estimate</span>
-    <p>{{ task.estimateDate | date }}</p>
+    <p *ngIf="task.estimateDatenumber && task.estimateDateUnit">
+      {{ task.estimateDatenumber }} {{ task.estimateDateUnit }}
+    </p>
+    <p *ngIf="!task.estimateDatenumber || !task.estimateDateUnit">None</p>
   </div>
   <div class="importance card-info">
     <span class="card-def">Improtance</span>
@@ -72,27 +75,31 @@
   </div>
   <div style="display: flex; gap: 20px">
     <button
+      Info
+      [text]="'delete'"
       (click)="deleteTask(task)"
       class="task-action-card delete"
       *ngIf="InToDoComponent"
     >
-      delete
+      <img src="../../../../assets/delete-svgrepo-com.svg" alt="" />
     </button>
     <div class="update-buttons">
       <button
+        Info
+        [text]="'update'"
         (click)="changeUpdateMode(task)"
         class="task-action-card update"
         *ngIf="!updatemode && InToDoComponent"
       >
-        update
+        <img src="../../../../assets/edit-1-svgrepo-com.svg" alt="" />
       </button>
-      <!-- <button
+      <button
         (click)="UpdateTask(task)"
-        *ngIf="!updatemode && InToDoComponent"
+        *ngIf="updatemode && InToDoComponent"
         class="task-action-card update"
       >
         Submit
-      </button> -->
+      </button>
     </div>
   </div>
 </div>

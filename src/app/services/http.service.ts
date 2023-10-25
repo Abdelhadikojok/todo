@@ -4,6 +4,8 @@ import { environment } from 'src/environments/environment.prod';
 import { GroupedTask, Task } from '../models/task';
 import { Category } from '../models/category';
 import { BehaviorSubject, Observable, debounceTime } from 'rxjs';
+import { TaskOne, Tasks } from '../models/task-one';
+import { User } from '../models/models';
 
 @Injectable({
   providedIn: 'root'
@@ -14,18 +16,22 @@ export class HttpService {
   constructor(private http:HttpClient) { }
 
   getTasks(){
-    return this.http.get<GroupedTask[]>(`${environment.apiUrl}/getTasks`)
+    return this.http.get<Tasks[]>(`${environment.apiUrl}/getTasks`)
+  }
+
+  getTaskOne(){
+    return this.http.get<Tasks[]>(`${environment.apiUrl}/getTasks`)
   }
 
   getCategories(){
     return this.http.get<Category[]>(`${environment.apiUrl}/getCategories`)
   }
 
-  addTask(task : Task){
+  addTask(task : TaskOne){
     return this.http.post(`${environment.apiUrl}/addTasks`,task)
   }
 
-  updateTask(task:Task){
+  updateTask(task:TaskOne){
     return this.http.put(`${environment.apiUrl}/updateTask`,task)
   }
 
@@ -34,6 +40,10 @@ export class HttpService {
   }
   getFilteredTaskCards(title: string){
     const params = new HttpParams().set('title', title);
-    return this.http.get<GroupedTask[]>(`${environment.apiUrl}/filter`, { params });
+    return this.http.get<Tasks[]>(`${environment.apiUrl}/filter`, { params });
+  }
+
+  getUserEmail(){
+    return this.http.get<User>(`${environment.apiUrl}/getUser`)
   }
 }

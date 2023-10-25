@@ -67,8 +67,7 @@ li {
 image,
 a,
 data,
-button,
-ion-icon {
+button{
   display: block;
 }
 
@@ -117,7 +116,7 @@ html {
 }
 
 body {
-  color: #222;
+  background-color: #707070;
   font-size: 1.6rem;
   line-height: 1.7rem;
   font-family: 'Lato', sans-serif;

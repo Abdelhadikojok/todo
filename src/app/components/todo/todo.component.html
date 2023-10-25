@@ -1,62 +1,35 @@
 <div class="container" *ngIf="tasks && tasks.length > 0" cdkDropListGroup>
-  <div class="todo category-section">
+  <div
+    *ngFor="let card of tasks; let i = index"
+    class="example-list category-section"
+    cdkDropList
+    [cdkDropListData]="card.tasks"
+    (cdkDropListDropped)="drop($event, card.tasks[0].categoryId)"
+  >
     <div class="category-header">
-      <img src="../../../assets/ToDoIcon.svg" alt="" />
-      <p>To Do</p>
+      <img
+        src="{{ categoryHeaderImages[card.tasks[0].categoryId - 2] }}"
+        alt=""
+      />
+      <p>{{ card.tasks[0].name }}</p>
     </div>
-    <div
-      class="example-list"
-      cdkDropList
-      [cdkDropListData]="todoTask"
-      (cdkDropListDropped)="drop($event, 2)"
-    >
-      <div *ngFor="let totask of todoTask" cdkDrag>
-        <app-task
-          [task]="totask"
-          (taskDeleted)="onTaskDeleted(totask)"
-        ></app-task>
-      </div>
-      <div class="empty-task card" *ngIf="todoTask.length == 0"></div>
+    <div *ngFor="let task of card.tasks" cdkDrag>
+      <app-task
+        [task]="task"
+        (taskDeleted)="onTaskDeleted(task)"
+        (deletMode)="ChangeDeleteMode($event)"
+        (InToDoComponent)="(true)"
+      ></app-task>
     </div>
-  </div>
-  <div class="Doing category-section">
-    <div class="category-header">
-      <img src="../../../assets/DoingIcon.svg" alt="" />
-      <p>Doing</p>
-    </div>
-    <div
-      class="example-list"
-      cdkDropList
-      [cdkDropListData]="doingTask"
-      (cdkDropListDropped)="drop($event, 3)"
-    >
-      <div *ngFor="let ditask of doingTask" cdkDrag>
-        <app-task
-          [task]="ditask"
-          (taskDeleted)="onTaskDeleted(ditask)"
-        ></app-task>
-      </div>
-      <div class="empty-task card" *ngIf="doingTask.length == 0"></div>
-    </div>
-  </div>
-  <div class="done category-section">
-    <div class="category-header">
-      <img src="../../../assets/DoneIcon.svg" alt="" />
-      <p>Done</p>
-    </div>
-    <div
-      class="example-list"
-      cdkDropList
-      [cdkDropListData]="doneTask"
-      (cdkDropListDropped)="drop($event, 4)"
-    >
-      <div *ngFor="let dotask of doneTask" cdkDrag>
-        <app-task
-          [task]="dotask"
-          (taskDeleted)="onTaskDeleted(dotask)"
-        ></app-task>
-      </div>
-      <div class="empty-task card" *ngIf="doneTask.length == 0" cdkDrag></div>
-    </div>
+    <div class="empty-task card" *ngIf="card.tasks.length == 0"></div>
   </div>
 </div>
+
+<div class="delete-popup" *ngIf="deleteMode">
+  <h1>are you sure</h1>
+  <div class="buttons">
+    <button class="submit" (click)="deleteTask()">submit</button>
+    <button class="cancel" (click)="deleteMode = false">cancel</button>
+  </div>
+</div>
+<div class="delete-overlay" *ngIf="deleteMode"></div>

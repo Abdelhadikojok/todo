@@ -15,7 +15,8 @@ import { TodoComponent } from './components/todo/todo.component';
 import { TaskComponent } from './components/todo/task/task.component';
 import { CdkDrag, CdkDropList, CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { AddTaskComponent } from './components/add-task/add-task.component';
-import { TasksByCategoryComponent } from './components/todo/tasks-by-category/tasks-by-category.component';
+import { AlertNotifyComponent } from './components/alert-notify/alert-notify.component';
+import { InfoDirective } from './directives/info.directive';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TasksByCategoryComponent } from './components/todo/tasks-by-category/ta
     TodoComponent,
     TaskComponent,
     AddTaskComponent,
-    TasksByCategoryComponent
+    AlertNotifyComponent,
+    InfoDirective
   ],
   imports: [
     BrowserModule,

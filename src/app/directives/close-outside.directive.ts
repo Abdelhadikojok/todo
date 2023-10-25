@@ -11,7 +11,7 @@ import {
 import { filter, fromEvent, Subscription } from 'rxjs';
 
 @Directive({
-  selector: '[appCloseOutside]'
+  selector: '[CloseOutside]'
 })
 export class CloseOutsideDirective implements AfterViewInit, OnDestroy {
   @Output() clickOutside = new EventEmitter<void>();

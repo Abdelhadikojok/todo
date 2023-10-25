@@ -72,3 +72,14 @@ button:disabled {
 button:hover {
   background-color: var(--meduim-purple );
 }
+
+.estimateDate{
+  display: flex;
+  gap :20px;
+  align-items: center;
+}
+
+.estimate-half{
+  flex: 1;
+  margin-bottom: 10px;
+}

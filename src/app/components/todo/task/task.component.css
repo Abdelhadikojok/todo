@@ -58,22 +58,98 @@
 }
 
 .task-action-card{
-  padding: 10px 15px;
+  padding: 10px 10px;
   border-radius: 4px;
   font-size: var(--fs-8);
-  color: white;
-  font-weight: var(--fw-600);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .delete{
   background-color: #94000f ;
+  opacity: 0;
+  transition: .3s;
+  position: relative;
 }
+
+.delete img{
+  width: 30px
+}
+
+.delete div{
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #94000f;
+  padding: 5px 10px;
+  color: white;
+  border-radius: 3px;
+
+}
+
+.delete:hover::before{
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 8px;
+  border-color: #94000f transparent transparent transparent;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+
+
 
 .update{
   background-color: #00fdbe85 ;
+  opacity: 0;
+  transition: .3s;
+
+}
+
+.update div{
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #00fdbe85;
+  padding: 5px 10px;
+  color: white;
+  border-radius: 3px;
+
+}
+
+.update:hover::before{
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 8px;
+  border-color: #00fdbe85 transparent transparent transparent;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+
+}
+
+.update img{
+  width: 30px;
 }
 .update-buttons{
   display: flex;
   gap: 20px;
 
 }
+
+.card:hover .update,
+.card:hover .delete{
+  opacity: 1;
+  transition: .3s;
+}
+
+

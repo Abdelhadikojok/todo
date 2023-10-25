@@ -63,24 +63,24 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="estimateDate">Estimate Date</label>
-      <input
-        type="date"
-        id="estimateDate"
-        name="estimateDate"
-        [(ngModel)]="task!.estimateDate"
-        required
-        #estimateDate="ngModel"
-      />
-      <div
-        *ngIf="
-          estimateDate.invalid && (estimateDate.dirty || estimateDate.touched)
-        "
-      >
-        <div *ngIf="estimateDate.hasError('required')" class="error-message">
-          Estimate Date is required.
-        </div>
+    <div class="form-group" class="estimateDate">
+      <div class="estimate-half">
+        <label for="estimateDatenumber">Estimate Date (Number)</label>
+        <input
+          type="number"
+          id="estimateDatenumber"
+          name="estimateDatenumber"
+          [(ngModel)]="task.estimateDatenumber"
+        />
+      </div>
+      <div class="estimate-half">
+        <label for="estimateDateunit">Estimate Date (Unit)</label>
+        <input
+          type="text"
+          id="estimateDateunit"
+          name="estimateDateunit"
+          [(ngModel)]="task.estimateDateUnit"
+        />
       </div>
     </div>
 
