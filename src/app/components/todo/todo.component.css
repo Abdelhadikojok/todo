@@ -116,6 +116,34 @@
   z-index: 99;
 }
 
+.no-task-exist{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.no-task-exist h1{
+  color: white;
+}
+
+.add-task-page-link{
+  padding: 10px 20px;
+  background-color: var(--dark-blue-color);
+  color: white !important;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-weight: var(--fw-600);
+
+}
+
 
 .empty-task{
   padding: 20px;

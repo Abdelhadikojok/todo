@@ -25,6 +25,11 @@
   </div>
 </div>
 
+<div *ngIf="tasks.length == 0" class="no-task-exist">
+  <h1>there is no Tasks added yet</h1>
+  <a routerLink="/addTask" class="add-task-page-link">ADD TASK</a>
+</div>
+
 <div class="delete-popup" *ngIf="deleteMode">
   <h1>are you sure</h1>
   <div class="buttons">
