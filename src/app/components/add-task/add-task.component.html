@@ -71,7 +71,19 @@
           id="estimateDatenumber"
           name="estimateDatenumber"
           [(ngModel)]="task.estimateDatenumber"
+          #estimateDatenumber="ngModel"
+          min="1"
         />
+        <div
+          *ngIf="
+            estimateDatenumber.invalid &&
+            (estimateDatenumber.dirty || estimateDatenumber.touched)
+          "
+        >
+          <div *ngIf="estimateDatenumber.hasError('min')">
+            Please enter a positive number.
+          </div>
+        </div>
       </div>
       <div class="estimate-half">
         <label for="estimateDateunit">Estimate Date (Unit)</label>

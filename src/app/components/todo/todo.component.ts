@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -9,12 +9,13 @@ import { GroupedTask, Task } from 'src/app/models/task';
 import { TaskOne, Tasks } from 'src/app/models/task-one';
 import { Category } from 'src/app/models/category';
 import { AlertService } from 'src/app/services/alert.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.css']
 })
-export class TodoComponent implements OnInit {
+export class TodoComponent implements OnInit ,OnDestroy{
   tasks  : Tasks[] =[]
   Categories : Category[] =[]
   categoryHeaderImages : any[] = [
@@ -36,12 +37,18 @@ export class TodoComponent implements OnInit {
   }
   filterTitle : string = ""
 
+  dataSubscription !: Subscription
+  getCategoriesSubscription !: Subscription
+  getTaskSubscription !: Subscription
+  deleteTaskSubscription !: Subscription
+  getFilteredTaskSubscription !: Subscription
+
   constructor(private httpService:HttpService,private alertService:AlertService){}
 
   ngOnInit(): void {
       this.getTasks()
       this.getCategories()
-      this.httpService.dataSubject.subscribe(res=>{
+      this.dataSubscription = this.httpService.dataSubject.subscribe(res=>{
         this.filterTitle = res
         console.log(res);
         this.loadTaskCards();
@@ -51,7 +58,7 @@ export class TodoComponent implements OnInit {
 
 
   getTasks(){
-    this.httpService.getTaskOne().subscribe(res=>{
+    this.getTaskSubscription = this.httpService.getTaskOne().subscribe(res=>{
       this.tasks = res
 
     })
@@ -67,9 +74,10 @@ export class TodoComponent implements OnInit {
     this.deleteMode = mode
   }
 
+  // .subscribe
   deleteTask() {
     if (this.tasktodelete.taskId) {
-      this.httpService.deleteTask(this.tasktodelete.taskId).subscribe(
+      this.deleteTaskSubscription=this.httpService.deleteTask(this.tasktodelete.taskId).subscribe(
         (res) => {
           this.alertService.alertMode.next(true);
 
@@ -123,7 +131,7 @@ export class TodoComponent implements OnInit {
   }
 
   getCategories(){
-    this.httpService.getCategories().subscribe(res=>{
+    this.getCategoriesSubscription = this.httpService.getCategories().subscribe(res=>{
       this.Categories = res
       console.log(res);
 
@@ -132,7 +140,7 @@ export class TodoComponent implements OnInit {
 
   loadTaskCards() {
     if(this.filterTitle != ""){
-      this.httpService.getFilteredTaskCards(this.filterTitle).subscribe(
+      this.getFilteredTaskSubscription = this.httpService.getFilteredTaskCards(this.filterTitle).subscribe(
         (data: Tasks[]) => {
 
           this.tasks = data
@@ -146,6 +154,26 @@ export class TodoComponent implements OnInit {
     }else{
       this.getTasks()
     }
+  }
+
+
+  ngOnDestroy(): void {
+    if (this.dataSubscription) {
+      this.dataSubscription.unsubscribe()
+    }
+    if (this.getCategoriesSubscription) {
+      this.dataSubscription.unsubscribe()
+    }
+    if (this.getTaskSubscription) {
+      this.dataSubscription.unsubscribe()
+    }
+    if (this.deleteTaskSubscription) {
+      this.deleteTaskSubscription.unsubscribe()
+    }
+    if (this.getFilteredTaskSubscription) {
+      this.deleteTaskSubscription.unsubscribe()
+    }
+
   }
 
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -8,11 +9,12 @@ import { HttpService } from 'src/app/services/http.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit,OnDestroy {
   display : boolean = false
   dipslayInfo : boolean = false
   title:string=""
   email:string =""
+  getUserEmailSubscription !: Subscription
 
   constructor(private router : Router,private authService:AuthService,private httpService:HttpService){}
 
@@ -58,10 +60,16 @@ export class HeaderComponent implements OnInit {
   }
 
   getUserEmail(){
-    this.httpService.getUserEmail().subscribe(res=>{
+    this.getUserEmailSubscription =this.httpService.getUserEmail().subscribe(res=>{
       console.log(res);
 
       this.email = res.email
     })
+  }
+
+  ngOnDestroy(): void {
+    if (this.getUserEmailSubscription) {
+      this.getUserEmailSubscription.unsubscribe()
+    }
   }
 }

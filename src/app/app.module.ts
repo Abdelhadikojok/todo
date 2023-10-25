@@ -17,6 +17,7 @@ import { CdkDrag, CdkDropList, CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { AddTaskComponent } from './components/add-task/add-task.component';
 import { AlertNotifyComponent } from './components/alert-notify/alert-notify.component';
 import { InfoDirective } from './directives/info.directive';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { InfoDirective } from './directives/info.directive';
     TaskComponent,
     AddTaskComponent,
     AlertNotifyComponent,
-    InfoDirective
+    InfoDirective,
   ],
   imports: [
     BrowserModule,

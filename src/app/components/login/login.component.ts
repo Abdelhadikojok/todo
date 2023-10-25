@@ -1,6 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class LoginComponent implements OnDestroy {
   islogedIn: boolean = false;
   sginUpText: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router,private alertService:AlertService) {
 
   }
 
@@ -40,14 +41,14 @@ export class LoginComponent implements OnDestroy {
               console.log(this.islogedIn)
               this.isloading = false;
               this.router.navigate(['/'])
+              this.alertService.alertMode.next(true)
           }, err => {
-              // alertify.error('login Faild');
               this.error = err;
               console.log(this.error);
-
+              this.alertService.alertMode.next(false)
               this.isloading = false;
           })
-          // form.reset();
+          form.reset();
 
       }
   }

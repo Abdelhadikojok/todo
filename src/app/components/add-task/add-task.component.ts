@@ -30,6 +30,7 @@ export class AddTaskComponent implements OnInit , OnDestroy{
   categories : Category[] = []
 
   private categoriesSubscription!: Subscription;
+  private addTaskSubscription!: Subscription;
 
 
 
@@ -53,7 +54,7 @@ export class AddTaskComponent implements OnInit , OnDestroy{
 
   onSubmit(form:NgForm){
     console.log("-----",this.task)
-    this.http.addTask(this.task).subscribe(res=>{
+    this.addTaskSubscription = this.http.addTask(this.task).subscribe(res=>{
       console.log(res);
       this.alertService.alertMode.next(true)
     },err=>{
@@ -66,6 +67,9 @@ export class AddTaskComponent implements OnInit , OnDestroy{
   ngOnDestroy(): void {
     if (this.categoriesSubscription) {
       this.categoriesSubscription.unsubscribe();
+    }
+    if (this.addTaskSubscription) {
+      this.addTaskSubscription.unsubscribe();
     }
   }
 }

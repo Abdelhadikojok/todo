@@ -23,7 +23,7 @@ export class AuthService implements OnInit{
 
   signIn(email: string, password: string) {
 
-    return this.http.post<LoginRes>(`${environment.apiUrl}/api/User/login`, {userId: 2, email: email, password: password , image: ""})
+    return this.http.post<LoginRes>(`${environment.apiUrl}/login`, {userId: 2, email: email, password: password , image: ""})
       .pipe(
       tap(res => {
         localStorage.setItem('user', JSON.stringify(res));

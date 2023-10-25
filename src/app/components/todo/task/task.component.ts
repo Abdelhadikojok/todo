@@ -1,4 +1,5 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { GroupedTask, Task } from 'src/app/models/task';
 import { TaskOne } from 'src/app/models/task-one';
 import { AlertService } from 'src/app/services/alert.service';
@@ -9,7 +10,7 @@ import { HttpService } from 'src/app/services/http.service';
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.css']
 })
-export class TaskComponent {
+export class TaskComponent implements OnDestroy{
   @Input() InToDoComponent : boolean = true
   updatemode : boolean = false
   @Input() task : TaskOne ={
@@ -23,6 +24,8 @@ export class TaskComponent {
     }
     @Output() taskDeleted = new EventEmitter<TaskOne>();
     @Output() deletMode = new EventEmitter<boolean>();
+
+    updateTaskSubscription !: Subscription
     constructor(private httpServices:HttpService ,private alertService:AlertService){}
 
     deleteTask(task:TaskOne) {
@@ -40,7 +43,7 @@ export class TaskComponent {
 
     UpdateTask(task: TaskOne){
       this.updatemode = false
-      this.httpServices.updateTask(task).subscribe(res=>{
+      this.updateTaskSubscription=this.httpServices.updateTask(task).subscribe(res=>{
         this.alertService.alertMode.next(true)
       },err=>{
         this.alertService.alertMode.next(false)
@@ -48,5 +51,11 @@ export class TaskComponent {
 
       console.log("this is",task);
 
+    }
+
+    ngOnDestroy(): void {
+      if (this.updateTaskSubscription) {
+        this.updateTaskSubscription.unsubscribe
+      }
     }
 }
