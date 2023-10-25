@@ -138,3 +138,53 @@ ul{
 }
 
 
+@media (max-width:1060px) {
+  .search{
+    width: 350px;
+    font-size: var(--fs-8);
+  }
+  .search::placeholder{
+    font-size: var(--fs-8);
+  }
+}
+
+
+@media (max-width:600px) {
+  .search{
+    width: 200px;
+  }
+  .search input::placeholder{
+    font-size: var(--fs-8);
+  }
+}
+
+@media (max-width:600px) {
+  .container .logo img{
+    width: 60px;
+  }
+  ul{
+    gap: 20px;
+  }
+
+  .user img{
+    width: 30px;
+  }
+  .search{
+    height: 30px;
+  }
+  .search .search-icon{
+    width: 15px;
+  }
+}
+
+@media (max-width:400px){
+  .search{
+    width: 150px;
+  }
+  .search input::placeholder{
+    font-size: 1rem;
+  }
+  .container{
+    padding: 5px;
+  }
+}

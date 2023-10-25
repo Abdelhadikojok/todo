@@ -8,7 +8,7 @@ import { AddTaskComponent } from './components/add-task/add-task.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'todo', pathMatch: 'full' },
-  {path: "todo" , component: TodoComponent , canActivate: [authGuard]},
+  {path: "todo" , component: TodoComponent },
   {path : "login" ,component : LoginComponent},
   {path : "unAutherized" , component:UnautherizedComponent},
   {path : "addTask",component : AddTaskComponent},

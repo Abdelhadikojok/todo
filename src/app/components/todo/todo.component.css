@@ -15,7 +15,7 @@
 }
 
 .category-header{
-  width: 420px;
+  width: 100%;
   padding: 15px 20px;
   background-color: #212529;
   margin-bottom: 20px;
@@ -54,7 +54,7 @@
 
 .example-list{
   margin-top: 80px;
-  min-width: 460px;
+  width: 460px;
 
 }
 .example-list .cdk-drag {
@@ -125,3 +125,27 @@
   border-radius: 6px;
   margin-bottom: 20px;
 }
+
+
+@media (max-width:1600px) {
+  .example-list{
+    width: 420px;
+  }
+}
+
+@media (max-width:1450px) {
+  .container{
+    gap: 10px;
+  }
+  .example-list{
+    width: 400px;
+  }
+}
+
+@media (max-width:1250px) {
+
+  .example-list{
+    width: 350px;
+  }
+}
+

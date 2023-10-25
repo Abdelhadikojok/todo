@@ -18,6 +18,7 @@ import { AddTaskComponent } from './components/add-task/add-task.component';
 import { AlertNotifyComponent } from './components/alert-notify/alert-notify.component';
 import { InfoDirective } from './directives/info.directive';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
