@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Category } from 'src/app/models/category';
 import { Task } from 'src/app/models/task';
-import { TaskOne } from 'src/app/models/task-one';
 import { AlertService } from 'src/app/services/alert.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -16,7 +15,7 @@ export class AddTaskComponent implements OnInit , OnDestroy{
   estimateDateNumber:number=0
   estimateDateUnit:string=""
 
-  task : TaskOne = {
+  task : Task = {
     categoryId : 0,
     status: "",
     dueDate: "",

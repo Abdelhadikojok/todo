@@ -5,11 +5,10 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { HttpService } from 'src/app/services/http.service';
-import { GroupedTask, Task } from 'src/app/models/task';
-import { TaskOne, Tasks } from 'src/app/models/task-one';
 import { Category } from 'src/app/models/category';
 import { AlertService } from 'src/app/services/alert.service';
 import { Subscription } from 'rxjs';
+import { Task, Tasks } from 'src/app/models/task';
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
@@ -24,7 +23,7 @@ export class TodoComponent implements OnInit ,OnDestroy{
     "../../../assets/DoneIcon.svg"
   ]
   deleteMode : boolean = false;
-  tasktodelete : TaskOne ={
+  tasktodelete : Task ={
     taskId:0,
     categoryId :0,
     status: "",
@@ -58,7 +57,7 @@ export class TodoComponent implements OnInit ,OnDestroy{
 
 
   getTasks(){
-    this.getTaskSubscription = this.httpService.getTaskOne().subscribe(res=>{
+    this.getTaskSubscription = this.httpService.getTasks().subscribe(res=>{
       this.tasks = res
 
     })
@@ -159,21 +158,21 @@ export class TodoComponent implements OnInit ,OnDestroy{
 
   ngOnDestroy(): void {
     if (this.dataSubscription) {
-      this.dataSubscription.unsubscribe()
+      this.dataSubscription.unsubscribe();
     }
     if (this.getCategoriesSubscription) {
-      this.dataSubscription.unsubscribe()
+      this.getCategoriesSubscription.unsubscribe();
     }
     if (this.getTaskSubscription) {
-      this.dataSubscription.unsubscribe()
+      this.getTaskSubscription.unsubscribe();
     }
     if (this.deleteTaskSubscription) {
-      this.deleteTaskSubscription.unsubscribe()
+      this.deleteTaskSubscription.unsubscribe();
     }
     if (this.getFilteredTaskSubscription) {
-      this.deleteTaskSubscription.unsubscribe()
+      this.getFilteredTaskSubscription.unsubscribe();
     }
-
   }
+
 
 }

@@ -1,7 +1,6 @@
 import { Component, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { GroupedTask, Task } from 'src/app/models/task';
-import { TaskOne } from 'src/app/models/task-one';
+import { Task } from 'src/app/models/task';
 import { AlertService } from 'src/app/services/alert.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -13,7 +12,7 @@ import { HttpService } from 'src/app/services/http.service';
 export class TaskComponent implements OnDestroy{
   @Input() InToDoComponent : boolean = true
   updatemode : boolean = false
-  @Input() task : TaskOne ={
+  @Input() task : Task={
       categoryId : 2,
       status: "",
       dueDate: "",
@@ -22,26 +21,26 @@ export class TaskComponent implements OnDestroy{
       title: "",
       importance : ""
     }
-    @Output() taskDeleted = new EventEmitter<TaskOne>();
+    @Output() taskDeleted = new EventEmitter<Task>();
     @Output() deletMode = new EventEmitter<boolean>();
 
     updateTaskSubscription !: Subscription
     constructor(private httpServices:HttpService ,private alertService:AlertService){}
 
-    deleteTask(task:TaskOne) {
+    deleteTask(task:Task) {
       console.log(task);
       this.deletMode.emit(true)
       this.taskDeleted.emit(task);
     }
 
-    changeUpdateMode(task:TaskOne){
+    changeUpdateMode(task:Task){
       this.updatemode = !this.updatemode
       const t = task
       this.task = task
     }
 
 
-    UpdateTask(task: TaskOne){
+    UpdateTask(task: Task){
       this.updatemode = false
       this.updateTaskSubscription=this.httpServices.updateTask(task).subscribe(res=>{
         this.alertService.alertMode.next(true)
